@@ -1,10 +1,9 @@
 import java.util.Scanner;
-import java.util.Random;
 
 public class two048 {
 
     public static void main(String[] args) {
-            // TODO fix add new numbers
+            // TODO fix add new numbers when nothing changes
             // TODO method everything
             // TODO add user interface
 
@@ -209,7 +208,6 @@ public class two048 {
         }
 
         public static void addNewNumbers(int row, int col, int[][] arr) {
-            Random r = new Random();
             if (isBoardFull(arr) || !canMerge(arr) && !(calculateMax(arr) <= 2)) {
                 // do nothing
             } else {
@@ -218,7 +216,7 @@ public class two048 {
                     col = (int) (Math.random() * 4);
                 } while (!(arr[row][col] == 0));
 
-                arr[row][col] = ((r.nextInt() % 2 == 0) ? 2 : 4);
+                arr[row][col] = (((Math.random() * 10) % 2 == 0) ? 2 : 4);
             }
         }
 
