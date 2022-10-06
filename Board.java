@@ -62,13 +62,6 @@ public class Board {
         }
     }
 
-    private int calculateScore(int mergedSquare, int score) {
-        if(mergedSquare == 2) {
-            return 0;
-        }
-        return score + (2 * calculateScore((int) (mergedSquare * Math.pow(2, -1)), 0) + mergedSquare);
-    }
-
     public String checkBoard() {
         if (!sameBoard) {
             if(calculateMax() == 2048) {
@@ -202,7 +195,7 @@ public class Board {
                 for (int r = 0; r < 3; r++) {
                     if (numbers[r][c] == numbers[r + 1][c] && !(numbers[r][c] == 0)) {
                         numbers[r][c] += numbers[r + 1][c];
-                        score = calculateScore(numbers[r][c], score);
+                        score += numbers[r][c];
                         numbers[r + 1][c] = 0;
                     }
                 }
@@ -240,7 +233,7 @@ public class Board {
                 for(int c = 0; c < 3; c++) {
                     if(numbers[r][c] == numbers[r][c+1] && !(numbers[r][c] == 0)) {
                         numbers[r][c] += numbers[r][c+1];
-                        score = calculateScore(numbers[r][c], score);
+                        score += numbers[r][c];
                         numbers[r][c+1] = 0;
                     }
                 }
@@ -278,7 +271,7 @@ public class Board {
                 for(int r = 3; r > 0; r--) {
                     if(numbers[r][c] == numbers[r-1][c] && !(numbers[r][c] == 0)) {
                         numbers[r][c] += numbers[r-1][c];
-                        score = calculateScore(numbers[r][c], score);
+                        score += numbers[r][c];
                         numbers[r-1][c] = 0;
                     }
                 }
@@ -319,8 +312,7 @@ public class Board {
                 for(int c = 3; c > 0; c--) {
                     if(numbers[r][c] == numbers[r][c-1] && !(numbers[r][c] == 0)) {
                         numbers[r][c] += numbers[r][c-1];
-                        score = calculateScore(numbers[r][c], score);
-
+                        score += numbers[r][c];
                         numbers[r][c-1] = 0;
                     }
                 }
